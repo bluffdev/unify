@@ -5,7 +5,12 @@ const path = require('path')
 require('dotenv').config()
 
 app.use(express.json())
-app.use(express.static(path.join(__dirname, 'views'), {index:false,extensions:['html']}))
+app.use(
+    express.static(path.join(__dirname, 'views'), {
+        index: false,
+        extensions: ['html']
+    })
+)
 
 const port = process.env.PORT || 3000
 
@@ -14,6 +19,10 @@ app.get('/', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
+    res.redirect('login')
+})
+
+app.get('/meme', (req, res) => {
     res.redirect('login')
 })
 
