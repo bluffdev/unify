@@ -6,15 +6,23 @@ class Event {
     titleElement
     descriptionElement
     descriptionText
+    rowElement
+    colElement
 
-    constructor(titleText, descriptionText) {
+    constructor(titleText, descriptionText, row) {
         this.titleText = titleText
         this.descriptionText = descriptionText
         this.eventSectionElement = document.querySelector('#event-section')
+        this.rowElement = row
         this.createElements()
     }
 
     createElements() {
+        this.colElement = document.createElement('div')
+        this.colElement.classList.add('col-lg-2')
+        this.colElement.classList.add('col-md-6')
+        this.colElement.classList.add('col-sm-12')
+
         this.cardElement = document.createElement('div')
         this.cardElement.classList.add('card')
         this.cardElement.classList.add('event-card')
@@ -33,18 +41,8 @@ class Event {
         this.cardBodyElement.appendChild(this.titleElement)
         this.cardBodyElement.appendChild(this.descriptionElement)
         this.cardElement.appendChild(this.cardBodyElement)
-        this.eventSectionElement.appendChild(this.cardElement)
+        this.colElement.appendChild(this.cardElement)
+        this.rowElement.appendChild(this.colElement)
+        this.eventSectionElement.appendChild(this.rowElement)
     }
 }
-
-let eventArray = new Array()
-eventArray.push(new Event('Cool', 'This is the description of the event'))
-eventArray.push(new Event('Meme', 'This is the description of the event'))
-eventArray.push(new Event('Cool', 'This is the description of the event'))
-eventArray.push(new Event('Meme', 'This is the description of the event'))
-eventArray.push(new Event('Cool', 'This is the description of the event'))
-eventArray.push(new Event('Meme', 'This is the description of the event'))
-eventArray.push(new Event('Cool', 'This is the description of the event'))
-eventArray.push(new Event('Meme', 'This is the description of the event'))
-eventArray.push(new Event('Cool', 'This is the description of the event'))
-eventArray.push(new Event('Meme', 'This is the description of the event'))
