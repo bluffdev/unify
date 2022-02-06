@@ -18,14 +18,6 @@ app.get('/', (req, res) => {
     res.redirect('login')
 })
 
-app.get('/login', (req, res) => {
-    res.redirect('login')
-})
-
-app.get('/meme', (req, res) => {
-    res.redirect('login')
-})
-
 const start = () => {
     app.listen(port, () => console.log(`Listening on port ${port}`))
 }

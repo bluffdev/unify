@@ -1,0 +1,27 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    align-items: center;
+}
+
+.formbox {
+    width: 100%;
+    max-width: 350px;
+    margin: auto;
+    padding: 15px;
+}
+
+h1 {
+    font-family: 'Sanchez', serif;
+}
+
+.formelements {
+    margin: 0px 0px 5px 0px;
+}
+
+.btn {
+    max-width: 350px;
+}
