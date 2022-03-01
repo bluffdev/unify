@@ -22,6 +22,9 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', auth)
 
+// Routing that the app uses, done in a different way
+require("./api/routes/user.route.js")(app);
+
 const start = () => {
     app.listen(port, () => console.log(`Listening on port ${port}`))
 }
