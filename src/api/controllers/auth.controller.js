@@ -1,9 +1,28 @@
-const register = (req, res) => {
-    res.send('You have logged in :)')
-}
+const User = require('../models/users.model')
 
-const login = (req, res) => {
-    res.send('You have registered :)')
-}
+exports.registerUser = (req, res) => {
+    // Validate request
+    if (!req.body) {
+        res.status(400).send({
+            message: 'Content can not be empty!'
+        })
+    }
 
-module.exports = { register, login }
+    // Create a user
+    const user = new User({
+        username: req.body.username,
+        password: req.body.password,
+        email: req.body.email
+    })
+
+    // Save user in the database
+    User.createUser(user, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message ||
+                    'Some error occurred while creating the User.'
+            })
+        else res.send(data)
+    })
+}
