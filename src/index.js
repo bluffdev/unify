@@ -7,6 +7,9 @@ const auth = require('./api/routes/auth.route')
 require('dotenv').config()
 
 app.use(express.json())
+
+const port = process.env.PORT || 3000
+
 app.use(
     express.static(path.join(__dirname, 'views'), {
         index: false,
@@ -14,16 +17,11 @@ app.use(
     })
 )
 
-const port = process.env.PORT || 3000
-
 app.get('/', (req, res) => {
     res.redirect('login')
 })
 
 app.use('/api/auth', auth)
-
-// Routing that the app uses, done in a different way
-// require('./api/routes/user.route.js')(app)
 
 const start = async () => {
     try {
