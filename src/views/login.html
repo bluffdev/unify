@@ -19,18 +19,19 @@
             href="https://fonts.googleapis.com/css2?family=Sanchez&display=swap"
             rel="stylesheet"
         />
+        <!-- <script type="text/javascript" src="scripts/login.js"></script> -->
     </head>
     <body class="text-center">
         <main class="formbox">
             <h1>Unify</h1>
-            <form>
+            <form id="loginForm">
                 <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
                 <div class="form-floating formelements">
                     <input
                         type="username"
                         class="form-control"
-                        id="floatingInput"
+                        id="usernameField"
                         placeholder="Username"
                         required
                     />
@@ -40,7 +41,7 @@
                     <input
                         type="password"
                         class="form-control"
-                        id="floatingPassword"
+                        id="passwordField"
                         placeholder="Password"
                         required
                     />
@@ -48,6 +49,7 @@
                 </div>
 
                 <button
+                    id="loginButton"
                     class="w-100 btn btn-lg btn-primary formelements"
                     type="submit"
                 >
@@ -66,5 +68,6 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"
         ></script>
+        <script type="text/javascript" src="scripts/login.js"></script>
     </body>
 </html>
