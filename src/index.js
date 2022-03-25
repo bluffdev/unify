@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const path = require('path')
 
+const auth = require('./api/routes/auth.route')
+
 require('dotenv').config()
 
 app.use(express.json())
@@ -18,8 +20,17 @@ app.get('/', (req, res) => {
     res.redirect('login')
 })
 
-const start = () => {
-    app.listen(port, () => console.log(`Listening on port ${port}`))
+app.use('/api/auth', auth)
+
+// Routing that the app uses, done in a different way
+// require('./api/routes/user.route.js')(app)
+
+const start = async () => {
+    try {
+        app.listen(port, () => console.log(`Listening on port ${port}`))
+    } catch (err) {
+        console.error(err)
+    }
 }
 
 start()
