@@ -1,0 +1,21 @@
+#event-section {
+    width: 80%;
+}
+
+#navbar {
+    width: 60em;
+}
+
+@media (max-width: 1450px) {
+    #event-section {
+        width: 100%;
+    }
+}
+
+.card {
+    margin-top: 1em;
+}
+
+#eventDescription {
+    margin-bottom: 10px;
+}

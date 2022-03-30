@@ -25,3 +25,12 @@ h1 {
 .btn {
     max-width: 350px;
 }
+
+#collegeSelect {
+    width: 100%;
+    min-height: 50px;
+    margin-bottom: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 0.5rem 0.6rem
+}
