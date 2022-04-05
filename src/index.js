@@ -3,6 +3,7 @@ const app = express()
 const path = require('path')
 
 const auth = require('./api/routes/auth.route')
+const events = require('./api/routes/events.route')
 
 require('dotenv').config()
 
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/auth', auth)
+app.use('/api/events', events)
 
 const start = async () => {
     try {
