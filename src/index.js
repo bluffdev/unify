@@ -4,6 +4,7 @@ const path = require('path')
 
 const auth = require('./api/routes/auth.route')
 const events = require('./api/routes/events.route')
+const rsos = require('./api/routes/rsos.route')
 
 require('dotenv').config()
 
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', auth)
 app.use('/api/events', events)
+app.use('/api/rsos', rsos)
 
 const start = async () => {
     try {
