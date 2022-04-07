@@ -17,9 +17,14 @@ class Dashboard {
         this.rowIndex = 0
     }
 
-    addEvent(name, description) {
+    addEvent(name, location, description) {
         this.eventList.push(
-            new Event(name, description, this.eventRows[this.rowIndex])
+            new Event(
+                name,
+                location,
+                description,
+                this.eventRows[this.rowIndex]
+            )
         )
 
         this.numberOfEvents += 1
@@ -45,6 +50,7 @@ const loadDashboard = () => {
             for (let i = 0; i < data.events.length; i++) {
                 dashboard.addEvent(
                     data.events[i].name,
+                    data.events[i].location,
                     data.events[i].description
                 )
             }

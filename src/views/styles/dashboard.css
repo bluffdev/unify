@@ -20,5 +20,11 @@ p {
     margin-bottom: 5px;
 }
 
+.locationDiv {
+    display: flex;
+    flex-direction: row;
+}
 
-
+.locationElement {
+    margin-left: 0.25em;
+}

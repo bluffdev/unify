@@ -4,13 +4,17 @@ class Event {
     cardBodyElement
     titleText
     titleElement
+    locationIcon
+    locationElement
+    locationText
     descriptionElement
     descriptionText
     rowElement
     colElement
 
-    constructor(titleText, descriptionText, row) {
+    constructor(titleText, locationText, descriptionText, row) {
         this.titleText = titleText
+        this.locationText = locationText
         this.descriptionText = descriptionText
         this.eventSectionElement = document.querySelector('#event-section')
         this.rowElement = row
@@ -34,11 +38,33 @@ class Event {
         this.titleElement.textContent = this.titleText
         this.titleElement.classList.add('card-title')
 
+        this.locationIcon = document.createElement('i')
+        this.locationIcon.classList.add('bi')
+        this.locationIcon.classList.add('bi-geo-alt-fill')
+        // this.locationIcon.classList.add('card-subtitle')
+        this.locationIcon.classList.add('mb-2')
+        this.locationIcon.classList.add('text-muted')
+
+        this.locationElement = document.createElement('h5')
+        this.locationElement.textContent = this.locationText
+        this.locationElement.classList.add('locationElement')
+        // this.locationElement.classList.add('card-subtitle')
+        this.locationElement.classList.add('mb-2')
+        this.locationElement.classList.add('text-muted')
+
         this.descriptionElement = document.createElement('p')
         this.descriptionElement.textContent = this.descriptionText
         this.descriptionElement.classList.add('card-text')
 
+        let locationDiv = document.createElement('div')
+        locationDiv.classList.add('locationDiv')
+        locationDiv.appendChild(this.locationIcon)
+        locationDiv.appendChild(this.locationElement)
+
         this.cardBodyElement.appendChild(this.titleElement)
+        // this.cardBodyElement.appendChild(this.locationIcon)
+        // this.cardBodyElement.appendChild(this.locationElement)
+        this.cardBodyElement.appendChild(locationDiv)
         this.cardBodyElement.appendChild(this.descriptionElement)
         this.cardElement.appendChild(this.cardBodyElement)
         this.colElement.appendChild(this.cardElement)
