@@ -21,6 +21,7 @@ class Dashboard {
         this.eventList.push(
             new Event(
                 name,
+                'April 3, 2022 at 4:00 p.m.',
                 location,
                 description,
                 this.eventRows[this.rowIndex]
