@@ -17,13 +17,9 @@ class Dashboard {
         this.rowIndex = 0
     }
 
-    addEvent() {
+    addEvent(name, description) {
         this.eventList.push(
-            new Event(
-                'Name',
-                'This is a description of the event and I am trying to make it longer',
-                this.eventRows[this.rowIndex]
-            )
+            new Event(name, description, this.eventRows[this.rowIndex])
         )
 
         this.numberOfEvents += 1
@@ -38,14 +34,24 @@ class Dashboard {
     }
 }
 
-let dashboard = new Dashboard()
-dashboard.addEvent()
-dashboard.addEvent()
-dashboard.addEvent()
-dashboard.addEvent()
-dashboard.addEvent()
-dashboard.addEvent()
-dashboard.addEvent()
-dashboard.addEvent()
-dashboard.addEvent()
-dashboard.addEvent()
+const loadDashboard = () => {
+    let dashboard = new Dashboard()
+
+    const url = 'http://localhost:3000/api/events/getEvents'
+
+    fetch(url, { method: 'GET' })
+        .then((response) => response.json())
+        .then((data) => {
+            for (let i = 0; i < data.events.length; i++) {
+                dashboard.addEvent(
+                    data.events[i].name,
+                    data.events[i].description
+                )
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error)
+        })
+}
+
+loadDashboard()
