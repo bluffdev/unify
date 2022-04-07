@@ -61,3 +61,39 @@ const loadDashboard = () => {
 }
 
 loadDashboard()
+
+const createRSO = () => {
+    let name = document.getElementById('eventName').value
+    let description = document.getElementById('eventDescription').value
+
+    let postObj = {
+        name: name,
+        description: description
+    }
+
+    let post = JSON.stringify(postObj)
+
+    const url = 'http://localhost:3000/api/rsos/createRSO'
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: post
+    })
+        .then((response) => response.json())
+        .catch((error) => {
+            console.error('Error:', error)
+        })
+}
+
+const addFormEventListener = () => {
+    let form = document.getElementById('rsoForm')
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        createRSO()
+    })
+}
+
+addFormEventListener()
