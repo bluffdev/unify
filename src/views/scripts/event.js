@@ -16,7 +16,7 @@ class Event {
 
     constructor(titleText, dateText, locationText, descriptionText, row) {
         this.titleText = titleText
-        this.dateText = 'On ' + dateText
+        this.dateText = dateText
         this.locationText = locationText
         this.descriptionText = descriptionText
         this.eventSectionElement = document.querySelector('#event-section')

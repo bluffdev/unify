@@ -4,7 +4,10 @@ const Events = function (newEvent) {
     this.name = newEvent.name
     this.location = newEvent.location
     this.description = newEvent.description
-    this.date = newEvent.date
+    this.year = newEvent.year
+    this.month = newEvent.month
+    this.day = newEvent.day
+    this.time = newEvent.time
 }
 
 Events.createEvent = async (newEvent) => {

@@ -19,3 +19,12 @@
 #eventDescription {
     margin-bottom: 10px;
 }
+
+.locationDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.locationElement {
+    margin-left: 0.25em;
+}

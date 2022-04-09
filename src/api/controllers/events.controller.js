@@ -8,13 +8,16 @@ exports.createEvent = async (req, res) => {
             })
         }
 
-        const { name, location, description, date } = req.body
+        const { name, location, description, year, month, day, time } = req.body
 
         const newEvent = new Events({
             name: name,
             location: location,
             description: description,
-            date: date
+            year: year,
+            month: month,
+            day: day,
+            time: time
         })
 
         await Events.createEvent(newEvent)
