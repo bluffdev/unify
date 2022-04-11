@@ -1,13 +1,23 @@
 const express = require('express')
 const router = express.Router()
 const {
-    createEvent,
-    getEvents,
+    createPublicEvent,
+    createPrivateEvent,
+    createRSOEvent,
+    getPublicEvents,
+    getPrivateEvents,
+    getRSOEvents,
     deleteEvents
 } = require('../controllers/events.controller')
 
-router.route('/createEvent').post(createEvent)
-router.route('/deleteEvent').delete(deleteEvents)
-router.route('/getEvents').get(getEvents)
+router.route('/createPublicEvent').post(createPublicEvent)
+router.route('/createPrivateEvent').post(createPrivateEvent)
+router.route('/createRSOEvent').post(createRSOEvent)
+
+router.route('/getPublicEvents').get(getPublicEvents)
+router.route('/getPrivateEvents').get(getPrivateEvents)
+router.route('/getRSOEvents').get(getRSOEvents)
+
+router.route('/deleteEvents').delete(deleteEvents)
 
 module.exports = router

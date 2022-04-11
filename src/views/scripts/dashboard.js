@@ -6,7 +6,7 @@ class Dashboard {
     rowIndex
 
     constructor() {
-        this.eventSectionElement = document.querySelector('#event-section')
+        // this.eventSectionElement = document.querySelector('#event-section')
         this.eventList = new Array()
         let row = document.createElement('div')
         row.classList.add('row')
@@ -19,7 +19,7 @@ class Dashboard {
 
     addEvent(name, date, location, description) {
         this.eventList.push(
-            new Event(
+            new PublicEvent(
                 name,
                 date,
                 location,
@@ -27,7 +27,54 @@ class Dashboard {
                 this.eventRows[this.rowIndex]
             )
         )
+    
+    
+        this.numberOfEvents += 1
 
+        if (this.numberOfEvents % 6 === 0) {
+            let row = document.createElement('div')
+            row.classList.add('row')
+            row.classList.add('justify-content-start')
+            this.eventRows.push(row)
+            this.rowIndex += 1
+        }
+    }
+
+    addPrivateEvent(name, date, location, description) {
+        this.eventList.push(
+            new PrivateEvent(
+                name,
+                date,
+                location,
+                description,
+                this.eventRows[this.rowIndex]
+            )
+        )
+    
+    
+        this.numberOfEvents += 1
+
+        if (this.numberOfEvents % 6 === 0) {
+            let row = document.createElement('div')
+            row.classList.add('row')
+            row.classList.add('justify-content-start')
+            this.eventRows.push(row)
+            this.rowIndex += 1
+        }
+    }
+
+    addRSOEvent(name, date, location, description) {
+        this.eventList.push(
+            new RSOEvent(
+                name,
+                date,
+                location,
+                description,
+                this.eventRows[this.rowIndex]
+            )
+        )
+    
+    
         this.numberOfEvents += 1
 
         if (this.numberOfEvents % 6 === 0) {

@@ -1,6 +1,6 @@
 const Events = require('../models/events.model')
 
-exports.createEvent = async (req, res) => {
+exports.createPublicEvent = async (req, res) => {
     try {
         if (!req.body) {
             res.status(400).send({
@@ -20,7 +20,7 @@ exports.createEvent = async (req, res) => {
             time: time
         })
 
-        await Events.createEvent(newEvent)
+        await Events.createPublicEvent(newEvent)
         res.status(201).json({
             status: 'Success',
             message: 'Created new event'
@@ -33,6 +33,76 @@ exports.createEvent = async (req, res) => {
         })
     }
 }
+
+exports.createPrivateEvent = async (req, res) => {
+    try {
+        if (!req.body) {
+            res.status(400).send({
+                message: 'Content can not be empty!'
+            })
+        }
+
+        const { name, location, description, year, month, day, time } = req.body
+
+        const newEvent = new Events({
+            name: name,
+            location: location,
+            description: description,
+            year: year,
+            month: month,
+            day: day,
+            time: time
+        })
+
+        await Events.createPrivateEvent(newEvent)
+        res.status(201).json({
+            status: 'Success',
+            message: 'Created new event'
+        })
+    } catch (err) {
+        res.status(500).json({
+            status: 'Error',
+            message: 'Could not create event',
+            error: err
+        })
+    }
+}
+
+exports.createRSOEvent = async (req, res) => {
+    try {
+        if (!req.body) {
+            res.status(400).send({
+                message: 'Content can not be empty!'
+            })
+        }
+
+        const { name, location, description, year, month, day, time } = req.body
+
+        const newEvent = new Events({
+            name: name,
+            location: location,
+            description: description,
+            year: year,
+            month: month,
+            day: day,
+            time: time
+        })
+
+        await Events.createRSOEvent(newEvent)
+        res.status(201).json({
+            status: 'Success',
+            message: 'Created new event'
+        })
+    } catch (err) {
+        res.status(500).json({
+            status: 'Error',
+            message: 'Could not create event',
+            error: err
+        })
+    }
+}
+
+
 
 exports.deleteEvents = async (req, res) => {
     try {
@@ -55,9 +125,9 @@ exports.deleteEvents = async (req, res) => {
     }
 }
 
-exports.getEvents = async (req, res) => {
+exports.getPublicEvents = async (req, res) => {
     try {
-        const events = await Events.getEvents()
+        const events = await Events.getPublicEvents()
         res.status(200).json({
             status: 'Success',
             message: 'Grabbed all events',
@@ -71,3 +141,40 @@ exports.getEvents = async (req, res) => {
         })
     }
 }
+
+exports.getPrivateEvents = async (req, res) => {
+    try {
+        const events = await Events.getPrivateEvents()
+        res.status(200).json({
+            status: 'Success',
+            message: 'Grabbed all events',
+            events: events[0]
+        })
+    } catch (err) {
+        res.status(500).json({
+            status: 'Error',
+            message: 'Could not get events',
+            error: err
+        })
+    }
+}
+
+exports.getRSOEvents = async (req, res) => {
+    try {
+        const events = await Events.getRSOEvents()
+        res.status(200).json({
+            status: 'Success',
+            message: 'Grabbed all events',
+            events: events[0]
+        })
+    } catch (err) {
+        res.status(500).json({
+            status: 'Error',
+            message: 'Could not get events',
+            error: err
+        })
+    }
+}
+
+
+

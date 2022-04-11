@@ -1,0 +1,7 @@
+.card-body {
+    cursor: pointer;
+}
+
+.card-body:hover {
+    background-color: rgb(183, 233, 136);
+}
