@@ -1,7 +1,7 @@
 const loadDashboard = () => {
     let dashboard = new Dashboard()
 
-    const url = 'http://localhost:3000/api/events/getEvents'
+    const url = 'http://localhost:3000/api/events/getPublicEvents'
 
     fetch(url, { method: 'GET' })
         .then((response) => response.json())
@@ -56,7 +56,7 @@ const createEvent = () => {
 
     let post = JSON.stringify(postObj)
 
-    const url = 'http://localhost:3000/api/events/createEvent'
+    const url = 'http://localhost:3000/api/events/createPublicEvent'
 
     fetch(url, {
         method: 'POST',
