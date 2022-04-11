@@ -60,11 +60,53 @@ const createRSO = () => {
         })
 }
 
+const createEvent = () => {
+    let name = document.getElementById('eventName').value
+    let description = document.getElementById('eventDescription').value
+    let location = document.getElementById('eventLocation').value
+    let date = document.getElementById('eventTime').value
+    let year = date.slice(0, 4)
+    let month = date.slice(6, 7)
+    let day = date.slice(9, 10)
+    let time = date.slice(11, 16)
+
+    let postObj = {
+        name: name,
+        description: description,
+        location: location,
+        year: year,
+        month: month,
+        day: day,
+        time: time
+    }
+
+    let post = JSON.stringify(postObj)
+
+    const url = 'http://localhost:3000/api/events/createEvent'
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: post
+    })
+        .then((response) => response.json())
+        .catch((error) => {
+            console.error('Error:', error)
+        })
+}
+
 const addFormEventListener = () => {
     let form = document.getElementById('rsoForm')
     form.addEventListener('submit', (e) => {
         e.preventDefault()
         createRSO()
+    })
+    let form2 = document.getElementById('eventForm')
+    form2.addEventListener('submit', (e) => {
+        e.preventDefault()
+        createEvent()
     })
 }
 
