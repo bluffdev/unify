@@ -1,6 +1,6 @@
 const database = require('../../config/dbConfig')
 
-const Events = function (newEvent) {
+const PublicEvents = function (newEvent) {
     this.name = newEvent.name
     this.location = newEvent.location
     this.description = newEvent.description
@@ -10,35 +10,54 @@ const Events = function (newEvent) {
     this.time = newEvent.time
 }
 
-Events.createPublicEvent = async (newEvent) => {
+const PrivateEvents = function (newEvent) {
+    this.UniversityID = newEvent.UniversityID
+    this.name = newEvent.name
+    this.location = newEvent.location
+    this.description = newEvent.description
+    this.year = newEvent.year
+    this.month = newEvent.month
+    this.day = newEvent.day
+    this.time = newEvent.time
+}
+
+const RSOEvents = function (newEvent) {
+    this.RSOid = newEvent.RSOid
+    this.name = newEvent.name
+    this.location = newEvent.location
+    this.description = newEvent.description
+    this.year = newEvent.year
+    this.month = newEvent.month
+    this.day = newEvent.day
+    this.time = newEvent.time
+}
+
+PublicEvents.createPublicEvent = async (newEvent) => {
     return database.query('INSERT INTO publicevents SET ?', newEvent)
 }
 
-Events.createRSOEvent = async (newEvent) => {
+RSOEvents.createRSOEvent = async (newEvent) => {
     return database.query('INSERT INTO rsoevents SET ?', newEvent)
 }
 
-Events.createPrivateEvent = async (newEvent) => {
-    return database.query('INSERT INTO rsoevents SET ?', newEvent)
+PrivateEvents.createPrivateEvent = async (newEvent) => {
+    return database.query('INSERT INTO privateevents SET ?', newEvent)
 }
 
-Events.getPublicEvents = async () => {
+PublicEvents.getPublicEvents = async () => {
     return database.query('SELECT * FROM publicevents')
 }
 
-Events.getPrivateEvents = async () => {
+PrivateEvents.getPrivateEvents = async () => {
     return database.query('SELECT * FROM privateevents')
 }
 
-Events.getRSOEvents = async () => {
+RSOEvents.getRSOEvents = async () => {
     return database.query('SELECT * FROM rsoevents')
 }
 
-Events.deleteEvent = async (id) => {
-    return database.query(`DELETE from events WHERE eventid = ${id}`)
-}
+// Events.deleteEvent = async (id) => {
+//     return database.query(`DELETE from events WHERE eventid = ${id}`)
+// }
 
-
-
-
-module.exports = Events
+module.exports = { PublicEvents, PrivateEvents, RSOEvents }

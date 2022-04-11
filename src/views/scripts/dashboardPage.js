@@ -1,5 +1,7 @@
 const loadPublicEvents = () => {
-    let dashboard = new Dashboard(eventSectionElement = document.querySelector('#public-event-section'))
+    let dashboard = new Dashboard(
+        (eventSectionElement = document.querySelector('#public-event-section'))
+    )
 
     const url = 'http://localhost:3000/api/events/getPublicEvents'
 
@@ -33,9 +35,11 @@ const loadPublicEvents = () => {
 }
 
 const loadPrivateEvents = () => {
-    let dashboard = new Dashboard(eventSectionElement = document.querySelector('#private-event-section'))
+    let dashboard = new Dashboard(
+        (eventSectionElement = document.querySelector('#private-event-section'))
+    )
 
-    const url = 'http://localhost:3000/api/events/getPublicEvents'
+    const url = 'http://localhost:3000/api/events/getPrivateEvents'
 
     fetch(url, { method: 'GET' })
         .then((response) => response.json())
@@ -66,11 +70,12 @@ const loadPrivateEvents = () => {
         })
 }
 
-
 const loadRSOEvents = () => {
-    let dashboard = new Dashboard(eventSectionElement = document.querySelector('#RSO-event-section'))
+    let dashboard = new Dashboard(
+        (eventSectionElement = document.querySelector('#RSO-event-section'))
+    )
 
-    const url = 'http://localhost:3000/api/events/getPublicEvents'
+    const url = 'http://localhost:3000/api/events/getRSOEvents'
 
     fetch(url, { method: 'GET' })
         .then((response) => response.json())
@@ -92,7 +97,7 @@ const loadRSOEvents = () => {
                     data.events[i].name,
                     date,
                     data.events[i].location,
-                    data.events[i].description,
+                    data.events[i].description
                 )
             }
         })
@@ -106,8 +111,8 @@ loadPrivateEvents()
 loadRSOEvents()
 
 const createRSO = () => {
-    let name = document.getElementById('eventName').value
-    let description = document.getElementById('eventDescription').value
+    let name = document.getElementById('rsoName').value
+    let description = document.getElementById('rsoDescription').value
 
     let postObj = {
         name: name,

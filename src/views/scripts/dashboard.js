@@ -27,8 +27,7 @@ class Dashboard {
                 this.eventRows[this.rowIndex]
             )
         )
-    
-    
+
         this.numberOfEvents += 1
 
         if (this.numberOfEvents % 6 === 0) {
@@ -50,8 +49,7 @@ class Dashboard {
                 this.eventRows[this.rowIndex]
             )
         )
-    
-    
+
         this.numberOfEvents += 1
 
         if (this.numberOfEvents % 6 === 0) {
@@ -73,8 +71,7 @@ class Dashboard {
                 this.eventRows[this.rowIndex]
             )
         )
-    
-    
+
         this.numberOfEvents += 1
 
         if (this.numberOfEvents % 6 === 0) {

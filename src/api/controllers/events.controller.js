@@ -1,4 +1,8 @@
-const Events = require('../models/events.model')
+const {
+    PublicEvents,
+    PrivateEvents,
+    RSOEvents
+} = require('../models/events.model')
 
 exports.createPublicEvent = async (req, res) => {
     try {
@@ -10,7 +14,7 @@ exports.createPublicEvent = async (req, res) => {
 
         const { name, location, description, year, month, day, time } = req.body
 
-        const newEvent = new Events({
+        const newEvent = new PublicEvents({
             name: name,
             location: location,
             description: description,
@@ -20,7 +24,7 @@ exports.createPublicEvent = async (req, res) => {
             time: time
         })
 
-        await Events.createPublicEvent(newEvent)
+        await PublicEvents.createPublicEvent(newEvent)
         res.status(201).json({
             status: 'Success',
             message: 'Created new event'
@@ -42,9 +46,19 @@ exports.createPrivateEvent = async (req, res) => {
             })
         }
 
-        const { name, location, description, year, month, day, time } = req.body
+        const {
+            UniversityID,
+            name,
+            location,
+            description,
+            year,
+            month,
+            day,
+            time
+        } = req.body
 
-        const newEvent = new Events({
+        const newEvent = new PrivateEvents({
+            UniversityID: UniversityID,
             name: name,
             location: location,
             description: description,
@@ -54,7 +68,7 @@ exports.createPrivateEvent = async (req, res) => {
             time: time
         })
 
-        await Events.createPrivateEvent(newEvent)
+        await PrivateEvents.createPrivateEvent(newEvent)
         res.status(201).json({
             status: 'Success',
             message: 'Created new event'
@@ -76,9 +90,11 @@ exports.createRSOEvent = async (req, res) => {
             })
         }
 
-        const { name, location, description, year, month, day, time } = req.body
+        const { RSOid, name, location, description, year, month, day, time } =
+            req.body
 
-        const newEvent = new Events({
+        const newEvent = new RSOEvents({
+            RSOid: RSOid,
             name: name,
             location: location,
             description: description,
@@ -88,7 +104,7 @@ exports.createRSOEvent = async (req, res) => {
             time: time
         })
 
-        await Events.createRSOEvent(newEvent)
+        await RSOEvents.createRSOEvent(newEvent)
         res.status(201).json({
             status: 'Success',
             message: 'Created new event'
@@ -101,8 +117,6 @@ exports.createRSOEvent = async (req, res) => {
         })
     }
 }
-
-
 
 exports.deleteEvents = async (req, res) => {
     try {
@@ -127,7 +141,7 @@ exports.deleteEvents = async (req, res) => {
 
 exports.getPublicEvents = async (req, res) => {
     try {
-        const events = await Events.getPublicEvents()
+        const events = await PublicEvents.getPublicEvents()
         res.status(200).json({
             status: 'Success',
             message: 'Grabbed all events',
@@ -144,7 +158,7 @@ exports.getPublicEvents = async (req, res) => {
 
 exports.getPrivateEvents = async (req, res) => {
     try {
-        const events = await Events.getPrivateEvents()
+        const events = await PrivateEvents.getPrivateEvents()
         res.status(200).json({
             status: 'Success',
             message: 'Grabbed all events',
@@ -161,7 +175,7 @@ exports.getPrivateEvents = async (req, res) => {
 
 exports.getRSOEvents = async (req, res) => {
     try {
-        const events = await Events.getRSOEvents()
+        const events = await RSOEvents.getRSOEvents()
         res.status(200).json({
             status: 'Success',
             message: 'Grabbed all events',
@@ -175,6 +189,3 @@ exports.getRSOEvents = async (req, res) => {
         })
     }
 }
-
-
-
