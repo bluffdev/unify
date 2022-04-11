@@ -1,4 +1,13 @@
-#event-section {
+#public-event-section,
+#private-event-section,
+#RSO-event-section {
+    width: 80%;
+}
+
+.eventHeaders {
+    margin: 0 auto;
+    margin-top: 0.25em;
+    padding: 0.25em;
     width: 80%;
 }
 
@@ -7,7 +16,10 @@
 }
 
 @media (max-width: 1450px) {
-    #event-section {
+    #public-event-section,
+    #private-event-section,
+    #RSO-event-section,
+    .eventHeaders {
         width: 100%;
     }
 }
