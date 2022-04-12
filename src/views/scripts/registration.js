@@ -5,12 +5,14 @@ function register() {
     let email = document.getElementById('emailField').value
     let username = document.getElementById('usernameField').value
     let password = document.getElementById('passwordField').value
+    let university = document.getElementById('collegeSelect').value
 
     /* Data which will be sent to server */
     let postObj = {
         username: username,
         password: password,
-        email: email
+        email: email,
+        university: university
     }
 
     let post = JSON.stringify(postObj)

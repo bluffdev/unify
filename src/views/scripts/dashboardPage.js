@@ -113,10 +113,20 @@ loadRSOEvents()
 const createRSO = () => {
     let name = document.getElementById('rsoName').value
     let description = document.getElementById('rsoDescription').value
+    let email1 = document.getElementById('eventEmail').value
+    let email2 = document.getElementById('eventEmail1').value
+    let email3 = document.getElementById('eventEmail2').value
+    let email4 = document.getElementById('eventEmail3').value
+    let email5 = document.getElementById('eventEmail4').value
 
     let postObj = {
         name: name,
-        description: description
+        description: description,
+        email1: email1,
+        email2: email2,
+        email3: email3,
+        email4: email4,
+        email5: email5
     }
 
     let post = JSON.stringify(postObj)

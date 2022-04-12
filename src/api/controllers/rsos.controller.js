@@ -8,11 +8,16 @@ exports.createRSO = async (req, res) => {
             })
         }
 
-        const { name, description } = req.body
+        const { name, description, email1, email2, email3, email4 , email5 } = req.body
 
         const newRSO = new RSO({
             name: name,
-            description: description
+            description: description,
+            email1: email1,
+            email2: email2,
+            email3: email3,
+            email4: email4,
+            email5: email5
         })
 
         await RSO.createRSO(newRSO)
