@@ -1,6 +1,8 @@
 #public-event-section,
 #private-event-section,
-#RSO-event-section {
+#RSO-event-section,
+#rso-section,
+#rso-list {
     width: 80%;
 }
 
@@ -19,7 +21,8 @@
     #public-event-section,
     #private-event-section,
     #RSO-event-section,
-    .eventHeaders {
+    #rso-section,
+    #rso-list .eventHeaders {
         width: 100%;
     }
 }

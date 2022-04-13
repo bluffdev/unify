@@ -8,7 +8,8 @@ exports.createRSO = async (req, res) => {
             })
         }
 
-        const { name, description, email1, email2, email3, email4 , email5 } = req.body
+        const { name, description, email1, email2, email3, email4, email5 } =
+            req.body
 
         const newRSO = new RSO({
             name: name,
@@ -29,6 +30,23 @@ exports.createRSO = async (req, res) => {
         res.status(500).json({
             status: 'Error',
             message: 'Could not create event',
+            error: err
+        })
+    }
+}
+
+exports.getRSOs = async (req, res) => {
+    try {
+        const rsos = await RSO.getRSOs()
+        res.status(201).json({
+            status: 'Success',
+            message: 'Created a new RSO',
+            rsos: rsos[0]
+        })
+    } catch (err) {
+        res.status(500).json({
+            status: 'Error',
+            message: 'Could not get RSOs',
             error: err
         })
     }

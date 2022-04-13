@@ -5,3 +5,7 @@
 .card-body:hover {
     background-color: rgb(183, 233, 136);
 }
+
+p {
+    margin-bottom: 10px;
+}
