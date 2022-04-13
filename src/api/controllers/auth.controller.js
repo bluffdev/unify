@@ -22,7 +22,18 @@ exports.register = async (req, res) => {
             university: university
         })
 
-        await User.registerUser(user)
+        const newUser = await User.registerUser(user)
+
+        if (!newUser) {
+            return res
+                .status(500)
+                .json({
+                    status: 'Failure',
+                    message: 'Username or Password is already taken',
+                    errCode: 1
+                })
+        }
+
         res.status(201).json({
             status: 'Success',
             message: 'Registered new user'

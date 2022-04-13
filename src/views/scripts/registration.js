@@ -17,16 +17,38 @@ function register() {
 
     let post = JSON.stringify(postObj)
 
-    const url = '/api/auth/register'
-    let xhr = new XMLHttpRequest()
+    const url = 'http://localhost:3000/api/auth/register'
 
-    xhr.open('POST', url, true)
-    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
-    xhr.send(post)
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: post
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.errCode !== undefined) {
+                alert('The username or email you entered is already in use')
+            } else {
+                redirectToLogin()
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error)
+        })
+}
 
-    xhr.onload = function () {
-        if (xhr.status === 201) {
-            console.log('Post successfully created!')
-        }
-    }
+const addFormEventListener = () => {
+    let form = document.querySelector('#registerForm')
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        register()
+    })
+}
+
+addFormEventListener()
+
+const redirectToLogin = () => {
+    window.location.href = 'http://localhost:3000/login'
 }
