@@ -40,8 +40,21 @@ const loadPrivateEvents = () => {
     )
 
     const url = 'http://localhost:3000/api/events/getPrivateEvents'
+    const id = localStorage.getItem('id')
 
-    fetch(url, { method: 'GET' })
+    const postObj = {
+        id: id
+    }
+
+    const post = JSON.stringify(postObj)
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: post
+    })
         .then((response) => response.json())
         .then((data) => {
             for (let i = 0; i < data.events.length; i++) {
@@ -76,8 +89,21 @@ const loadRSOEvents = () => {
     )
 
     const url = 'http://localhost:3000/api/events/getRSOEvents'
+    const id = localStorage.getItem('id')
 
-    fetch(url, { method: 'GET' })
+    const postObj = {
+        id: id
+    }
+
+    const post = JSON.stringify(postObj)
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: post
+    })
         .then((response) => response.json())
         .then((data) => {
             for (let i = 0; i < data.events.length; i++) {

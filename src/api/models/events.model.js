@@ -48,12 +48,34 @@ PublicEvents.getPublicEvents = async () => {
     return database.query('SELECT * FROM publicevents')
 }
 
-PrivateEvents.getPrivateEvents = async () => {
-    return database.query('SELECT * FROM privateevents')
+PrivateEvents.getPrivateEvents = async (id) => {
+    const university = await database.query(
+        `SELECT university FROM users WHERE id=${id}`
+    )
+
+    const universityID = await database.query(
+        `SELECT UniversityID FROM university WHERE name='${university[0][0].university}'`
+    )
+
+    return database.query(
+        `SELECT * FROM privateevents WHERE UniversityID=${universityID[0][0].UniversityID}`
+    )
 }
 
-RSOEvents.getRSOEvents = async () => {
-    return database.query('SELECT * FROM rsoevents')
+RSOEvents.getRSOEvents = async (id) => {
+    const email = await database.query(`SELECT email FROM users WHERE id=${id}`)
+
+    const rsoName = await database.query(
+        `SELECT RSOname FROM memberofrso WHERE email='${email[0][0].email}'`
+    )
+
+    const rsoId = await database.query(
+        `SELECT RSOid FROM rsos WHERE name='${rsoName[0][0].RSOname}'`
+    )
+
+    return database.query(
+        `SELECT * FROM rsoevents WHERE RSOid=${rsoId[0][0].RSOid}`
+    )
 }
 
 // Events.deleteEvent = async (id) => {

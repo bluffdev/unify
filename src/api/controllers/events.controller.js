@@ -158,7 +158,7 @@ exports.getPublicEvents = async (req, res) => {
 
 exports.getPrivateEvents = async (req, res) => {
     try {
-        const events = await PrivateEvents.getPrivateEvents()
+        const events = await PrivateEvents.getPrivateEvents(req.body.id)
         res.status(200).json({
             status: 'Success',
             message: 'Grabbed all events',
@@ -175,7 +175,7 @@ exports.getPrivateEvents = async (req, res) => {
 
 exports.getRSOEvents = async (req, res) => {
     try {
-        const events = await RSOEvents.getRSOEvents()
+        const events = await RSOEvents.getRSOEvents(req.body.id)
         res.status(200).json({
             status: 'Success',
             message: 'Grabbed all events',
