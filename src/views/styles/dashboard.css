@@ -2,7 +2,8 @@
 #private-event-section,
 #RSO-event-section,
 #rso-section,
-#rso-list {
+#rso-list,
+#current-rso-section {
     width: 80%;
 }
 

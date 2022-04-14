@@ -50,4 +50,20 @@ RSO.getRSOs = async () => {
     return database.query('SELECT * FROM rsos')
 }
 
+RSO.getCurrentRSOs = async (id) => {
+    const email = await database.query(`SELECT * FROM users WHERE id=${id}`)
+
+    const rsoName = await database.query(
+        `SELECT RSOname FROM memberofrso WHERE email='${email[0][0].email}'`
+    )
+
+    if (rsoName[0].length === 0) {
+        return null
+    }
+
+    return database.query(
+        `SELECT * FROM rsos WHERE name='${rsoName[0][0].RSOname}'`
+    )
+}
+
 module.exports = RSO

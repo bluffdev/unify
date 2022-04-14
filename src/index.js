@@ -29,6 +29,10 @@ app.get('/dashboard', (req, res) => {
     res.redirect('dashboard')
 })
 
+app.get('/rsoDashboard', (req, res) => {
+    res.redirect('rsoDashboard')
+})
+
 app.use('/api/auth', auth)
 app.use('/api/events', events)
 app.use('/api/rsos', rsos)
