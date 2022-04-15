@@ -78,8 +78,11 @@ RSO.getCurrentRSOs = async (id) => {
     }
 
     return database.query(
-        `SELECT * FROM rsos WHERE name='${rsoName[0][0].RSOname}'`
+        `SELECT * FROM memberofrso INNER JOIN rsos ON memberofrso.email='${email[0][0].email}' AND memberofrso.RSOname=rsos.name`
     )
+    // return database.query(
+    //     `SELECT * FROM rsos WHERE name='${rsoName[0][0].RSOname}'`
+    // )
 }
 
 module.exports = RSO

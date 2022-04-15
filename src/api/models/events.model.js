@@ -69,6 +69,10 @@ RSOEvents.getRSOEvents = async (id) => {
         `SELECT RSOname FROM memberofrso WHERE email='${email[0][0].email}'`
     )
 
+    if (rsoName[0].length === 0) {
+        return null
+    }
+
     const rsoId = await database.query(
         `SELECT RSOid FROM rsos WHERE name='${rsoName[0][0].RSOname}'`
     )
