@@ -58,3 +58,8 @@ p {
 .locationElement {
     margin-left: 0.25em;
 }
+
+.card-title:hover {
+    background-color:rgb(195, 226, 147);
+    cursor: pointer;
+}

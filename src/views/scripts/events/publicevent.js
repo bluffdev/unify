@@ -40,7 +40,7 @@ class PublicEvent {
         this.titleElement = document.createElement('h3')
         this.titleElement.textContent = this.titleText
         this.titleElement.classList.add('card-title')
-        this.titleElement.addEventListener('click', goToPublicComments)
+        this.titleElement.addEventListener('click', goToComments)
 
         this.dateElement = document.createElement('h5')
         this.dateElement.textContent = this.dateText

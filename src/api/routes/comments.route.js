@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const { getPublicEventComments } = require('../controllers/comments.controller')
+const { getComments, createComment } = require('../controllers/comments.controller')
 
-router.route('/getPublicEventComments').post(getPublicEventComments)
+router.route('/getComments').post(getComments)
+
+router.route('/createComment').post(createComment)
 
 module.exports = router

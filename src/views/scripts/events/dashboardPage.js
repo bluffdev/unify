@@ -222,7 +222,7 @@ const addFormEventListener = () => {
     })
 }
 
-const goToPublicComments = () => {
+const goToComments = () => {
     $('.card-title').click(function (e) {
         e.preventDefault()
         const eventName = $(this).text()

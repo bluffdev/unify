@@ -1,14 +1,18 @@
 const database = require('../../config/dbConfig')
 
-const Comments = function (newComment) {
+const Comment = function (newComment) {
     this.name = newComment.name
     this.id = newComment.id
     this.comment = newComment.comment
     this.rating = newComment.rating
 }
 
-Comments.getPublicEventComments = async (name) => {
-    return database.query(`SELECT * FROM publiceventcomments WHERE name=("${name}")'`)
+Comment.getComments = async (name) => {
+    return database.query(`SELECT * FROM comments WHERE name='${name}'`)
 }
 
-module.exports = Comments
+Comment.createComment = async (newComment) => {
+    return database.query('INSERT INTO comments SET ?', newComment)
+}
+
+module.exports = Comment
