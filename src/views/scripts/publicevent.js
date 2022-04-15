@@ -36,10 +36,11 @@ class PublicEvent {
 
         this.cardBodyElement = document.createElement('div')
         this.cardBodyElement.classList.add('card-body')
-
+        
         this.titleElement = document.createElement('h3')
         this.titleElement.textContent = this.titleText
         this.titleElement.classList.add('card-title')
+        this.titleElement.addEventListener('click', goToPublicComments)
 
         this.dateElement = document.createElement('h5')
         this.dateElement.textContent = this.dateText

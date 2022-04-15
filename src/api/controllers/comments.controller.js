@@ -2,7 +2,7 @@ const Comment = require('../models/comments.model')
 
 exports.getPublicEventComments = async (req, res) => {
     try {
-        const comments = await Comment.getPublicEventComments()
+        const comments = await Comment.getPublicEventComments(req.body.name)
 
         res.status(201).json({
             status: 'Success',

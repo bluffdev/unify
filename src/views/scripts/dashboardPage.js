@@ -194,7 +194,7 @@ const createEvent = () => {
 
     let post = JSON.stringify(postObj)
 
-    const url = 'http://localhost:3000/api/events/createEvent'
+    const url = 'http://localhost:3000/api/events/createPrivateEvent'
 
     fetch(url, {
         method: 'POST',
@@ -222,4 +222,14 @@ const addFormEventListener = () => {
     })
 }
 
-addFormEventListener()
+const goToPublicComments = () => {
+
+    $( ".card-title" ).click(function(e) {
+        e.preventDefault();
+        var eventName = $(this).text();
+        localStorage.setItem('eventName', eventName)
+        window.location.href = 'http://localhost:3000/commentPage.html'
+    });
+
+}
+
