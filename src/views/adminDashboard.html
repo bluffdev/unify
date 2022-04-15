@@ -22,14 +22,24 @@
             <nav class="navbar navbar-dark bg-dark">
                 <div class="container-fluid" id="navbar">
                     <a class="navbar-brand" href="dashboard.html">Unify</a>
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        data-toggle="modal"
-                        data-target="#exampleModal"
-                    >
-                        Create Event
-                    </button>
+                    <div>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-toggle="modal"
+                            data-target="#eventModal"
+                        >
+                            Create Event
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            onclick="window.location.href='rsoDashboard.html'"
+                        >
+                            View RSOs
+                        </button>
+                        <span id="rsoForm"></span>
+                    </div>
                 </div>
             </nav>
         </header>
@@ -37,7 +47,7 @@
         <!-- Modal -->
         <div
             class="modal fade"
-            id="exampleModal"
+            id="eventModal"
             tabindex="-1"
             role="dialog"
             aria-labelledby="exampleModalLabel"
@@ -130,7 +140,13 @@
             </div>
         </div>
 
+        <h1 class="eventHeaders">Public Events</h1>
         <section class="container-fluid" id="public-event-section"></section>
+        <h1 class="eventHeaders">Private Events</h1>
+        <section class="container-fluid" id="private-event-section"></section>
+        <h1 class="eventHeaders">RSO Events</h1>
+        <section class="container-fluid" id="RSO-event-section"></section>
+
         <script
             type="text/javascript"
             src="scripts/events/publicevent.js"
@@ -147,7 +163,10 @@
             type="text/javascript"
             src="scripts/events/dashboard.js"
         ></script>
-        <script type="text/javascript" src="scripts/adminDashboard.js"></script>
+        <script
+            type="text/javascript"
+            src="scripts/events/dashboardPage.js"
+        ></script>
 
         <script
             src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

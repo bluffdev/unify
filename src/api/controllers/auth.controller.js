@@ -25,13 +25,11 @@ exports.register = async (req, res) => {
         const newUser = await User.registerUser(user)
 
         if (!newUser) {
-            return res
-                .status(500)
-                .json({
-                    status: 'Failure',
-                    message: 'Username or Password is already taken',
-                    errCode: 1
-                })
+            return res.status(500).json({
+                status: 'Failure',
+                message: 'Username or Password is already taken',
+                errCode: 1
+            })
         }
 
         res.status(201).json({
@@ -72,9 +70,20 @@ exports.login = async (req, res) => {
         const isCorrectPassword = await bcrypt.compare(password, user.password)
 
         if (isCorrectPassword) {
+            const admin = await User.checkIfAdmin(username)
+
+            if (admin[0].length !== 0) {
+                return res.status(200).json({
+                    status: true,
+                    message: 'Logged in as admin',
+                    isAdmin: true,
+                    id: user.id
+                })
+            }
             res.status(200).json({
                 status: true,
                 message: 'Logged in',
+                isAdmin: false,
                 id: user.id
             })
         } else {

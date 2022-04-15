@@ -24,7 +24,14 @@ const login = () => {
                 alert('Wrong username or password')
             } else {
                 localStorage.setItem('id', data.id)
-                redirectToDashboard()
+
+                if (data.isAdmin) {
+                    localStorage.setItem('admin', true)
+                    redirectToAdminDashboard()
+                } else {
+                    localStorage.setItem('admin', false)
+                    redirectToDashboard()
+                }
             }
         })
         .catch((error) => {
@@ -43,4 +50,9 @@ const addFormEventListener = () => {
 const redirectToDashboard = () => {
     window.location.href = 'http://localhost:3000/dashboard'
 }
+
+const redirectToAdminDashboard = () => {
+    window.location.href = 'http://localhost:3000/adminDashboard'
+}
+
 addFormEventListener()

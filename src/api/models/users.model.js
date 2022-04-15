@@ -27,4 +27,8 @@ User.findByUsername = async (username, result) => {
     return database.query(`SELECT * FROM users WHERE username = '${username}'`)
 }
 
+User.checkIfAdmin = async (username) => {
+    return database.query(`SELECT * FROM admin WHERE username = '${username}'`)
+}
+
 module.exports = User

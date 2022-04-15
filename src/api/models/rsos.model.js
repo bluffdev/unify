@@ -21,6 +21,12 @@ RSO.createRSO = async (newRSO) => {
     let email4 = newRSO.email4
     let email5 = newRSO.email5
 
+    const user = await database.query(
+        `SELECT * FROM users WHERE email='${email1}'`
+    )
+
+    database.query('INSERT INTO admin SET ?', user[0][0])
+
     database.query(
         `INSERT INTO memberofrso (email, RSOname) VALUES ("${email1}", "${name}")`
     )
@@ -80,9 +86,6 @@ RSO.getCurrentRSOs = async (id) => {
     return database.query(
         `SELECT * FROM memberofrso INNER JOIN rsos ON memberofrso.email='${email[0][0].email}' AND memberofrso.RSOname=rsos.name`
     )
-    // return database.query(
-    //     `SELECT * FROM rsos WHERE name='${rsoName[0][0].RSOname}'`
-    // )
 }
 
 module.exports = RSO

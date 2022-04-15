@@ -61,6 +61,27 @@ const joinRSO = () => {
     console.log(allRSOList)
 }
 
+const addButtonEventListener = () => {
+    let btn = document.getElementById('redirect-button')
+    btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        let isAdmin = localStorage.getItem('admin')
+        if (isAdmin === true) {
+            window.location.href = 'http://localhost:3000/adminDashboard'
+        } else {
+            window.location.href = 'http://localhost:3000/dashboard'
+        }
+    })
+
+    let form2 = document.getElementById('eventForm')
+    form2.addEventListener('submit', (e) => {
+        e.preventDefault()
+        createEvent()
+    })
+}
+
+addButtonEventListener()
+
 const addAffiliation = () => {
     console.log('hello')
 }
