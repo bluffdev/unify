@@ -1,5 +1,7 @@
+let allRSOList = null
+
 const loadRSOs = () => {
-    let rsoList = new rsoDashboard(
+    allRSOList = new rsoDashboard(
         (eventSectionElement = document.querySelector('#rso-section'))
     )
 
@@ -9,7 +11,7 @@ const loadRSOs = () => {
         .then((response) => response.json())
         .then((data) => {
             for (let i = 0; i < data.rsos.length; i++) {
-                rsoList.addRSO(data.rsos[i].name, data.rsos[i].description)
+                allRSOList.addRSO(data.rsos[i].name, data.rsos[i].description)
             }
         })
         .catch((error) => {
@@ -54,6 +56,10 @@ const loadCurrentRSOs = () => {
 
 loadRSOs()
 loadCurrentRSOs()
+
+const joinRSO = () => {
+    console.log(allRSOList)
+}
 
 const addAffiliation = () => {
     console.log('hello')

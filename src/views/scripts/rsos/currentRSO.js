@@ -60,10 +60,40 @@ class CurrentRSO {
         this.descriptionElement.textContent = this.descriptionText
         this.descriptionElement.classList.add('card-text')
 
-        this.joinButton = document.createElement('button')
-        this.joinButton.textContent = 'Leave RSO'
-        this.joinButton.classList.add('btn')
-        this.joinButton.classList.add('btn-danger')
+        this.leaveButton = document.createElement('button')
+        this.leaveButton.textContent = 'Leave RSO'
+        this.leaveButton.classList.add('btn')
+        this.leaveButton.classList.add('btn-danger')
+
+        this.leaveButton.addEventListener('click', (e) => {
+            e.preventDefault()
+
+            let id = localStorage.getItem('id')
+
+            let postObj = {
+                id: id,
+                name: this.titleText
+            }
+
+            let post = JSON.stringify(postObj)
+
+            let url = 'http://localhost:3000/api/rsos/leaveRSO'
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: post
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    alert('You have left this RSO')
+                })
+                .catch((error) => {
+                    console.error('Error:', error)
+                })
+        })
 
         // let locationDiv = document.createElement('div')
         // locationDiv.classList.add('locationDiv')
@@ -74,7 +104,7 @@ class CurrentRSO {
         // this.cardBodyElement.appendChild(this.studentElement)
         // this.cardBodyElement.appendChild(locationDiv)
         this.cardBodyElement.appendChild(this.descriptionElement)
-        this.cardBodyElement.appendChild(this.joinButton)
+        this.cardBodyElement.appendChild(this.leaveButton)
         this.cardElement.appendChild(this.cardBodyElement)
         this.colElement.appendChild(this.cardElement)
         this.rowElement.appendChild(this.colElement)

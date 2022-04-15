@@ -63,6 +63,36 @@ class RSO {
         this.joinButton.classList.add('btn')
         this.joinButton.classList.add('btn-primary')
 
+        this.joinButton.addEventListener('click', (e) => {
+            e.preventDefault()
+
+            let id = localStorage.getItem('id')
+
+            let postObj = {
+                id: id,
+                name: this.titleText
+            }
+
+            let post = JSON.stringify(postObj)
+
+            let url = 'http://localhost:3000/api/rsos/joinRSO'
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: post
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    alert('You have joined an RSO')
+                })
+                .catch((error) => {
+                    console.error('Error:', error)
+                })
+        })
+
         // let locationDiv = document.createElement('div')
         // locationDiv.classList.add('locationDiv')
         // locationDiv.appendChild(this.locationIcon)

@@ -106,25 +106,27 @@ const loadRSOEvents = () => {
     })
         .then((response) => response.json())
         .then((data) => {
-            for (let i = 0; i < data.events.length; i++) {
-                let time = data.events[i].time
+            if (data.events !== undefined) {
+                for (let i = 0; i < data.events.length; i++) {
+                    let time = data.events[i].time
 
-                let hour = time.slice(0, 2)
-                let pm = 'a.m.'
-                if (hour > 12) {
-                    hour = hour - 12
-                    pm = 'p.m.'
+                    let hour = time.slice(0, 2)
+                    let pm = 'a.m.'
+                    if (hour > 12) {
+                        hour = hour - 12
+                        pm = 'p.m.'
+                    }
+
+                    time = `${hour}${time.slice(2, 5)} ${pm}`
+                    let date = `On ${data.events[i].month}/${data.events[i].day}/${data.events[i].year} at ${time}`
+
+                    dashboard.addRSOEvent(
+                        data.events[i].name,
+                        date,
+                        data.events[i].location,
+                        data.events[i].description
+                    )
                 }
-
-                time = `${hour}${time.slice(2, 5)} ${pm}`
-                let date = `On ${data.events[i].month}/${data.events[i].day}/${data.events[i].year} at ${time}`
-
-                dashboard.addRSOEvent(
-                    data.events[i].name,
-                    date,
-                    data.events[i].location,
-                    data.events[i].description
-                )
             }
         })
         .catch((error) => {
@@ -230,3 +232,5 @@ const goToComments = () => {
         window.location.href = 'http://localhost:3000/commentPage.html'
     })
 }
+
+addFormEventListener()

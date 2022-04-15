@@ -176,6 +176,14 @@ exports.getPrivateEvents = async (req, res) => {
 exports.getRSOEvents = async (req, res) => {
     try {
         const events = await RSOEvents.getRSOEvents(req.body.id)
+
+        if (!events) {
+            return res.status(404).json({
+                status: 'Failure',
+                message: 'No RSO events'
+            })
+        }
+
         res.status(200).json({
             status: 'Success',
             message: 'Grabbed all events',
