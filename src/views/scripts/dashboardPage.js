@@ -1,5 +1,7 @@
 const loadPublicEvents = () => {
-    let dashboard = new Dashboard(eventSectionElement = document.querySelector('#public-event-section'))
+    let dashboard = new Dashboard(
+        (eventSectionElement = document.querySelector('#public-event-section'))
+    )
 
     const url = 'http://localhost:3000/api/events/getPublicEvents'
 
@@ -33,11 +35,26 @@ const loadPublicEvents = () => {
 }
 
 const loadPrivateEvents = () => {
-    let dashboard = new Dashboard(eventSectionElement = document.querySelector('#private-event-section'))
+    let dashboard = new Dashboard(
+        (eventSectionElement = document.querySelector('#private-event-section'))
+    )
 
-    const url = 'http://localhost:3000/api/events/getPublicEvents'
+    const url = 'http://localhost:3000/api/events/getPrivateEvents'
+    const id = localStorage.getItem('id')
 
-    fetch(url, { method: 'GET' })
+    const postObj = {
+        id: id
+    }
+
+    const post = JSON.stringify(postObj)
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: post
+    })
         .then((response) => response.json())
         .then((data) => {
             for (let i = 0; i < data.events.length; i++) {
@@ -66,13 +83,27 @@ const loadPrivateEvents = () => {
         })
 }
 
-
 const loadRSOEvents = () => {
-    let dashboard = new Dashboard(eventSectionElement = document.querySelector('#RSO-event-section'))
+    let dashboard = new Dashboard(
+        (eventSectionElement = document.querySelector('#RSO-event-section'))
+    )
 
-    const url = 'http://localhost:3000/api/events/getPublicEvents'
+    const url = 'http://localhost:3000/api/events/getRSOEvents'
+    const id = localStorage.getItem('id')
 
-    fetch(url, { method: 'GET' })
+    const postObj = {
+        id: id
+    }
+
+    const post = JSON.stringify(postObj)
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: post
+    })
         .then((response) => response.json())
         .then((data) => {
             for (let i = 0; i < data.events.length; i++) {
@@ -92,7 +123,7 @@ const loadRSOEvents = () => {
                     data.events[i].name,
                     date,
                     data.events[i].location,
-                    data.events[i].description,
+                    data.events[i].description
                 )
             }
         })
@@ -106,12 +137,22 @@ loadPrivateEvents()
 loadRSOEvents()
 
 const createRSO = () => {
-    let name = document.getElementById('eventName').value
-    let description = document.getElementById('eventDescription').value
+    let name = document.getElementById('rsoName').value
+    let description = document.getElementById('rsoDescription').value
+    let email1 = document.getElementById('eventEmail').value
+    let email2 = document.getElementById('eventEmail1').value
+    let email3 = document.getElementById('eventEmail2').value
+    let email4 = document.getElementById('eventEmail3').value
+    let email5 = document.getElementById('eventEmail4').value
 
     let postObj = {
         name: name,
-        description: description
+        description: description,
+        email1: email1,
+        email2: email2,
+        email3: email3,
+        email4: email4,
+        email5: email5
     }
 
     let post = JSON.stringify(postObj)
@@ -153,7 +194,7 @@ const createEvent = () => {
 
     let post = JSON.stringify(postObj)
 
-    const url = 'http://localhost:3000/api/events/createEvent'
+    const url = 'http://localhost:3000/api/events/createPrivateEvent'
 
     fetch(url, {
         method: 'POST',
@@ -181,4 +222,14 @@ const addFormEventListener = () => {
     })
 }
 
-addFormEventListener()
+const goToPublicComments = () => {
+
+    $( ".card-title" ).click(function(e) {
+        e.preventDefault();
+        var eventName = $(this).text();
+        localStorage.setItem('eventName', eventName)
+        window.location.href = 'http://localhost:3000/commentPage.html'
+    });
+
+}
+
