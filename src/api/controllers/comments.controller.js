@@ -54,3 +54,67 @@ exports.createComment = async (req, res) => {
         })
     }
 }
+
+exports.deleteComment = async (req, res) => {
+    try {
+        if (!req.body) {
+            res.status(400).send({
+                message: 'Content can not be empty!'
+            })
+        }
+
+        const {
+            comment
+        } = req.body
+
+        const newComment = new Comment({
+            comment: comment
+        })
+
+        await Comment.deleteComment(newComment)
+
+        res.status(201).json({
+            status: 'Success',
+            message: 'deleted comment'
+        })
+    } catch (err) {
+        res.status(500).json({
+            status: 'Error',
+            message: 'Could not create event',
+            error: err
+        })
+    }
+}
+
+exports.editComment = async (req, res) => {
+    try {
+        if (!req.body) {
+            res.status(400).send({
+                message: 'Content can not be empty!'
+            })
+        }
+
+        const {
+            oldComment,
+            editComment
+        } = req.body
+
+        const newComment = new Comment({
+            comment: editComment,
+            name: oldComment
+        })
+
+        await Comment.editComment(newComment)
+
+        res.status(201).json({
+            status: 'Success',
+            message: 'deleted comment'
+        })
+    } catch (err) {
+        res.status(500).json({
+            status: 'Error',
+            message: 'Could not create event',
+            error: err
+        })
+    }
+}

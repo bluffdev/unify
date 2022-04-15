@@ -1,3 +1,4 @@
+
 let tableHeaders = ['Comments', 'Rating']
 
 const createScoreboardTable = () => {
@@ -31,6 +32,7 @@ const appendScores = (comment, rating) => {
     const scoreboardTable = document.querySelector('.scoreboardTable') // Find the table we created
     let scoreboardTableBodyRow = document.createElement('tr') // Create the current table row
     scoreboardTableBodyRow.className = 'scoreboardTableBodyRow'
+    scoreboardTableBodyRow.addEventListener('click', commentDelete)
     // Lines 72-85 create the 2 column cells that will be appended to the current table row
 
     let scoreRanking = document.createElement('td')
@@ -38,7 +40,23 @@ const appendScores = (comment, rating) => {
     let usernameData = document.createElement('td')
     usernameData.innerText = comment
 
-    scoreboardTableBodyRow.append(scoreRanking, usernameData) // Append all 2 cells to the table row
+    let deleteSection = document.createElement('td')
+
+    let deleteButton = document.createElement('button')
+    deleteButton.classList.add('deleteButton')
+    deleteButton.innerText = 'Delete'
+    deleteButton.addEventListener('click', deleteCom)
+
+    let editButton = document.createElement('button')
+    editButton.classList.add('editButton')
+    editButton.innerText = 'Edit'
+    editButton.dataset.target = '#editModal'
+    editButton.dataset.toggle = 'modal'
+
+    deleteSection.appendChild(deleteButton)
+    deleteSection.appendChild(editButton)
+
+    scoreboardTableBodyRow.append(scoreRanking, usernameData, deleteSection) // Append all 2 cells to the table row
     scoreboardTable.append(scoreboardTableBodyRow) // Append the current row to the scoreboard table body
     }
 
@@ -113,3 +131,72 @@ const createCom = () => {
             console.error('Error:', error)
         })
 }  
+
+
+const deleteCom = () => {
+
+    let comment = localStorage.getItem('comEdit')
+
+    let postObj = {
+        comment: comment
+    }
+
+    let post = JSON.stringify(postObj)
+
+    const url = 'http://localhost:3000/api/comments/deleteComment'
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: post
+    })
+        .then((response) => response.json())
+        .then(() => {
+            loadComments()
+        })  
+        .catch((error) => {
+            console.error('Error:', error)
+        })
+}  
+
+const editCom = () => {
+
+    let editComment = document.getElementById('editedComment').value
+
+    let oldComment = localStorage.getItem('comEdit')
+
+    let postObj = {
+        oldComment: oldComment,
+        editComment: editComment
+    }
+
+    let post = JSON.stringify(postObj)
+
+    const url = 'http://localhost:3000/api/comments/editComment'
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: post
+    })
+        .then((response) => response.json())
+        .then(() => {
+            loadComments()
+        })
+        .catch((error) => {
+            console.error('Error:', error)
+        })
+}  
+
+
+const commentDelete = () => {
+    $('.scoreboardTableBodyRow').click(function (e) {
+        e.preventDefault()
+        const comEdit = $(this).children("td:first", this).text();
+        localStorage.setItem('comEdit', comEdit)
+    })
+}
