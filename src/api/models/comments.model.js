@@ -11,6 +11,4 @@ Comments.getPublicEventComments = async (name) => {
     return database.query(`SELECT * FROM publiceventcomments WHERE name=("${name}")'`)
 }
 
-
-
 module.exports = Comments

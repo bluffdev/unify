@@ -43,5 +43,4 @@ const addFormEventListener = () => {
 const redirectToDashboard = () => {
     window.location.href = 'http://localhost:3000/dashboard'
 }
-
 addFormEventListener()

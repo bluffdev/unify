@@ -1,6 +1,4 @@
-
 const loadPublicEventComments = () => {
-
     let commentList = new commentDashboard(
         (eventSectionElement = document.querySelector('#comment-section'))
     )
@@ -32,5 +30,4 @@ const loadPublicEventComments = () => {
         })
 }
 
-loadPublicEventComments()
-
+loadComments()

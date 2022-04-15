@@ -1,4 +1,4 @@
-class uniList {
+class commentDashboard {
     eventSectionElement
     eventList
     eventRows
@@ -17,15 +17,9 @@ class uniList {
         this.rowIndex = 0
     }
 
-    addUniversity(name, location, description, numberOfStudents) {
+    addComment(description) {
         this.eventList.push(
-            new University(
-                name,
-                location,
-                description,
-                numberOfStudents,
-                this.eventRows[this.rowIndex]
-            )
+            new Comment(description, this.eventRows[this.rowIndex])
         )
 
         this.numberOfEvents += 1

@@ -23,7 +23,7 @@
     <body class="text-center">
         <main class="formbox">
             <h1>Unify</h1>
-            <form onsubmit="register()">
+            <form id="registerForm">
                 <h1 class="h3 mb-3 fw-normal">Registration</h1>
 
                 <div class="form-floating formelements">
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="form-floating formelements">
-                    <input 
+                    <input
                         type="username"
                         class="form-control"
                         placeholder="Username"
@@ -62,16 +62,24 @@
 
                 <div class="input-group">
                     <select class="custom-select" id="collegeSelect" required>
-                      <option selected>Choose University...</option>
-                      <option value="1">ucf</option>
-                      <option value="2">usf</option>
+                        <option selected>Choose University...</option>
+                        <option value="University of Central Florida">
+                            University of Central Florida
+                        </option>
+                        <option value="University of South Florida">
+                            University of South Florida
+                        </option>
+                        <option value="University of North Florida">
+                            University of North Florida
+                        </option>
                     </select>
-                  </div>
+                </div>
 
                 <button
                     id="submitButton"
                     class="w-100 btn btn-lg btn-primary formelements"
-                    type="submit">
+                    type="submit"
+                >
                     Register
                 </button>
 

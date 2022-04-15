@@ -1,4 +1,4 @@
-class PublicEvent {
+class RSOEvent {
     eventSectionElement
     cardElement
     cardBodyElement

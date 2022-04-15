@@ -17,7 +17,7 @@
     <body>
         <nav class="navbar navbar-dark bg-dark">
             <div class="container-fluid" id="navbar">
-                <a class="navbar-brand" href="#">Unify</a>
+                <a class="navbar-brand" href="dashboard.html">Unify</a>
 
                 <div>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rsoModal">
@@ -25,6 +25,9 @@
                     </button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventModal">
                         Create Event
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='rsoDashboard.html'">
+                        View RSOs
                     </button>
                 </div>
          
@@ -111,7 +114,6 @@
                                     <option selected>Choose Event Type</option>
                                     <option value="1">Public</option>
                                     <option value="2">Private</option>
-                                    <option value="3">RSO</option>
                                 </select>
                             </div>
 
@@ -134,15 +136,16 @@
             </div>
         </div>
 
-        <h1>Public Events</h1>
+        <h1 class="eventHeaders">Public Events</h1>
         <section class="container-fluid" id="public-event-section"></section>
-        <h1>Private Events</h1>
+        <h1 class="eventHeaders">Private Events</h1>
         <section class="container-fluid" id="private-event-section"></section>
-        <h1>RSO Events</h1>
+        <h1 class="eventHeaders">RSO Events</h1>
         <section class="container-fluid" id="RSO-event-section"></section>
-
         
         <script type="text/javascript" src="scripts/publicevent.js"></script>
+        <script type="text/javascript" src="scripts/privateevent.js"></script>
+        <script type="text/javascript" src="scripts/RSOevent.js"></script>
         <script type="text/javascript" src="scripts/dashboard.js"></script>
         <script type="text/javascript" src="scripts/dashboardPage.js"></script>
 
