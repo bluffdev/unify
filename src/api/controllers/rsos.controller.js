@@ -35,6 +35,40 @@ exports.createRSO = async (req, res) => {
     }
 }
 
+exports.joinRSO = async (req, res) => {
+    try {
+        const rsos = await RSO.joinRSO(req.body.id, req.body.name)
+        res.status(200).json({
+            status: 'Success',
+            message: 'Joined RSO',
+            rsos: rsos[0]
+        })
+    } catch (err) {
+        res.status(500).json({
+            status: 'Error',
+            message: 'Could not join RSO',
+            error: err
+        })
+    }
+}
+
+exports.leaveRSO = async (req, res) => {
+    try {
+        const rsos = await RSO.leaveRSO(req.body.id, req.body.name)
+        res.status(200).json({
+            status: 'Success',
+            message: 'Left RSO',
+            rsos: rsos[0]
+        })
+    } catch (err) {
+        res.status(500).json({
+            status: 'Error',
+            message: 'Could not leave RSO',
+            error: err
+        })
+    }
+}
+
 exports.getRSOs = async (req, res) => {
     try {
         const rsos = await RSO.getRSOs()

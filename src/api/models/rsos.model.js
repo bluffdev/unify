@@ -46,6 +46,22 @@ RSO.createRSO = async (newRSO) => {
     )
 }
 
+RSO.joinRSO = async (id, name) => {
+    const email = await database.query(`SELECT email FROM users WHERE id=${id}`)
+
+    return database.query(
+        `INSERT INTO memberofrso (email, RSOname) VALUES('${email[0][0].email}','${name}')`
+    )
+}
+
+RSO.leaveRSO = async (id, name) => {
+    const email = await database.query(`SELECT email FROM users WHERE id=${id}`)
+
+    return database.query(
+        `DELETE FROM memberofrso WHERE email='${email[0][0].email}' AND RSOname='${name}'`
+    )
+}
+
 RSO.getRSOs = async () => {
     return database.query('SELECT * FROM rsos')
 }
