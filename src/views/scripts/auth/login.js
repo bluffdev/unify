@@ -23,7 +23,9 @@ const login = () => {
             if (!data.status) {
                 alert('Wrong username or password')
             } else {
+                console.log(data.university)
                 localStorage.setItem('id', data.id)
+                localStorage.setItem('UniversityID', data.university)
 
                 if (data.isAdmin) {
                     localStorage.setItem('admin', true)

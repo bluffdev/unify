@@ -31,4 +31,10 @@ User.checkIfAdmin = async (username) => {
     return database.query(`SELECT * FROM admin WHERE username = '${username}'`)
 }
 
+User.getUniversityID = async (name) => {
+    return database.query(
+        `SELECT UniversityID FROM university where name='${name}'`
+    )
+}
+
 module.exports = User

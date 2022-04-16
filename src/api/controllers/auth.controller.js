@@ -71,20 +71,23 @@ exports.login = async (req, res) => {
 
         if (isCorrectPassword) {
             const admin = await User.checkIfAdmin(username)
+            const university = await User.getUniversityID(user.university)
 
             if (admin[0].length !== 0) {
                 return res.status(200).json({
                     status: true,
                     message: 'Logged in as admin',
                     isAdmin: true,
-                    id: user.id
+                    id: user.id,
+                    university: university[0][0].UniversityID
                 })
             }
             res.status(200).json({
                 status: true,
                 message: 'Logged in',
                 isAdmin: false,
-                id: user.id
+                id: user.id,
+                university: university[0][0].UniversityID
             })
         } else {
             res.status(404).json({
